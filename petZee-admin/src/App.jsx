@@ -16,7 +16,7 @@ import Cat_Accessory_List from './Pages/Cat_Accessory_List';
 import Dog_Accessory_List from './Pages/Dog_Accessory_List';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
-export const url = 'http://localhost:8080';
+export const url = 'https://pet-zee-backend.onrender.com';
 
 const App = () => {
 
