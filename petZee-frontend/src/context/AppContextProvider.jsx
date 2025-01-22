@@ -9,7 +9,7 @@ const AppContextProvider = ( { children } ) => {
 
     // Backend URL
 
-    const url =  'https://pet-zee-backend.onrender.com'
+    const url =  'https://petzee-backend.onrender.com'
 
     // Navbar Toggle
 
