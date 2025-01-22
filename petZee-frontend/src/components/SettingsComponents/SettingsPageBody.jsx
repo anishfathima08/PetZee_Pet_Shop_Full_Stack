@@ -68,7 +68,7 @@ const SettingsPage = () => {
                 user.profile_photo.startsWith("data:image/") ? (
                 <img src={user.profile_photo} alt="Profile" className="lg:w-52 lg:h-52 w-4/6  object-cover rounded-full mx-auto"/>
                 ) : (
-                <div className="lg:w-44 lg:h-44 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-7xl">
+                <div className="lg:w-44 lg:h-44 w-28 h-28 bg-gradient-to-r mx-auto from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white lg:text-7xl text-5xl">
                   {user.username.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -100,21 +100,21 @@ const SettingsPage = () => {
 
         {selectedSection === 'editProfile' && (
 
-          <div className='flex flex-col p-8 gap-5 lg:w-7/12 md:w-7/12'>
+          <div className='flex flex-col p-8 gap-5 lg:w-7/12 md:w-9/12'>
 
             <div className="relative w-40 h-40 mx-auto cursor-pointer" onClick={() => document.getElementById("profileImageInput").click()}>
-          
-              <img src={newProfilePhoto || user.profile_photo || '' } alt="Profile Preview" className="w-full h-full object-cover rounded-full" style={{ display: newProfilePhoto ? 'block' : 'none' }}  
-              />
-              {!newProfilePhoto && !user.profile_photo && (
-                <div className="w-full h-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-7xl">
+
+              <input type="file" id="profileImageInput" onChange={handleProfileImageChange} className="hidden" />
+
+              {newProfilePhoto || (user.profile_photo && user.profile_photo.startsWith('data:image/')) ? (
+                <img src={newProfilePhoto || user.profile_photo} alt="Profile Preview" className="w-full h-full object-cover rounded-full"/>
+              ) : (
+                <div className="w-full h-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-7xl mx-auto">
                   {user.username.charAt(0).toUpperCase()}
                 </div>
               )}
 
             </div>
-
-            <input type="file" id="profileImageInput" onChange={handleProfileImageChange} className="hidden"/>
 
             <button className="mt-2 text-red-500 text-end underline hover:text-red-700" onClick={handleRemoveProfileImage}>
               Remove Profile Image
@@ -178,7 +178,7 @@ const SettingsPage = () => {
                   user.profile_photo.startsWith("data:image/") ? (
                   <img src={user.profile_photo} alt="Profile" className="w-40 h-40 object-cover rounded-full mx-auto"/>
                   ) : (
-                  <div className="w-28 h-28 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-4xl">
+                  <div className="w-28 h-28 mx-auto bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-4xl">
                     {user.username.charAt(0).toUpperCase()}
                   </div>
                 )} 
