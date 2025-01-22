@@ -98,14 +98,14 @@ const NavBar = () => {
 
             {/* PROFILE */}
             <div className="dropdown dropdown-hover lg:mx-3">
-              {/* {user.profile_photo &&
+              {user.profile_photo &&
                 user.profile_photo.startsWith("data:image/") ? (
                 <img src={user.profile_photo} alt="Profile" className="w-10 h-10 object-cover rounded-full"/>
                 ) : (
                 <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl">
                   {user.username.charAt(0).toUpperCase()}
                 </div>
-              )} */}
+              )}
               <ul tabIndex="0" className="dropdown-content menu bg-base-100 rounded-box z-[1] w-36 p-2 shadow">
                 <li><Link to={'/cart'}><i className="ri-shopping-cart-2-line"></i>Cart</Link></li>
                 <li><Link to={'/my-orders'}><i className="ri-shopping-bag-line"></i>Orders</Link></li>
@@ -145,14 +145,14 @@ const NavBar = () => {
               {/* Profile Img */}
               <div className="dropdown dropdown-hover">
                 <div tabIndex="0">
-                  {/* {user.profile_photo &&
+                  {user.profile_photo &&
                     user.profile_photo.startsWith("data:image/") ? (
                     <img src={user.profile_photo} alt="Profile" className="w-10 h-10 object-cover rounded-full"/>
                     ) : (
                     <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl">
                       {user.username.charAt(0).toUpperCase()}
                     </div>
-                  )}  */}
+                  )} 
                 </div>
                 <ul tabIndex="0" className="dropdown-content menu bg-base-100 rounded-box z-[1] w-36 p-2 shadow">
                   <li><Link to={'/cart'}><i className="ri-shopping-cart-2-line"></i>Cart</Link></li>
