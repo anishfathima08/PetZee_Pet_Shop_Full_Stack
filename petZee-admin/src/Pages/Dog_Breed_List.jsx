@@ -203,7 +203,7 @@ const Dog_Breed_List = () => {
       </dialog>
 
       {/* Update Modal */}
-      <dialog id="update_modal" className="modal">
+      <dialog id="update_modal" className="modal w-full lg:w-fit md:w-fit">
         <div className="modal-box p-6 rounded-lg shadow-lg bg-white">
           <form onSubmit={handleUpdateProduct}>
 
