@@ -12,15 +12,26 @@ const SettingsPage = () => {
 
       <div className="lg:w-1/4 xl:w-1/5 md:w-1/3 hidden shadow-xl p-4 lg:flex md:flex flex-col items-center">
         <div className='my-8'>
-          {user.profile_photo &&
-            user.profile_photo.startsWith("data:image/") ? (
-            <img src={user.profile_photo} alt="Profile" className="w-40 h-40 object-cover rounded-full mx-auto"/>
-            ) : (
-            <div className="w-28 h-28 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-4xl">
-              {user.username.charAt(0).toUpperCase()}
+          {user && user.username ? (
+            user.profile_photo && user.profile_photo.startsWith('data:image/') ? (
+              <img
+                src={user.profile_photo}
+                alt="Profile"
+                className="w-40 h-40 object-cover rounded-full mx-auto"
+              />
+              ) : (
+                <div className="w-28 h-28 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-4xl">
+                  {user.username.charAt(0).toUpperCase()}
+                </div>
+            )) : (
+            <div className="w-10 h-10 bg-gray-300 flex items-center justify-center rounded-full text-gray-700 text-xl">
+              ?
             </div>
-          )} 
-          <p className='text-center mt-4 text-2xl font-semibold'>{user.name}</p>
+          )}
+
+          { user && user.username ? (
+            <p className='text-center mt-4 text-2xl font-semibold'>{user.name}</p>
+          ) : ''}
         </div>
         <div className="w-full">
           <button onClick={() => setSelectedSection('details')} className='text-start block w-full py-2 px-4 text-lg mb-4 hover:font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-500'>
@@ -43,10 +54,6 @@ const SettingsPage = () => {
           <i className="ri-delete-bin-2-line mr-2"></i>Delete Account
           </button>
         </div>
-      </div>
-
-      <div className="block md:hidden lg:hidden">
-
       </div>
 
       <div className="flex-1 overflow-x-auto">
@@ -98,65 +105,65 @@ const SettingsPage = () => {
           </div>
         )}
 
-        {selectedSection === 'editProfile' && (
+          {selectedSection === 'editProfile' && (
 
-          <div className='flex flex-col p-8 gap-5 lg:w-7/12 md:w-9/12'>
+            <div className='flex flex-col p-8 gap-5 lg:w-7/12 md:w-9/12'>
 
-            <div className="relative w-40 h-40 mx-auto cursor-pointer" onClick={() => document.getElementById("profileImageInput").click()}>
+              <div className="relative w-40 h-40 mx-auto cursor-pointer" onClick={() => document.getElementById("profileImageInput").click()}>
 
-              <input type="file" id="profileImageInput" onChange={handleProfileImageChange} className="hidden" />
+                <input type="file" id="profileImageInput" onChange={handleProfileImageChange} className="hidden" />
 
-              {newProfilePhoto || (user.profile_photo && user.profile_photo.startsWith('data:image/')) ? (
-                <img src={newProfilePhoto || user.profile_photo} alt="Profile Preview" className="w-full h-full object-cover rounded-full"/>
-              ) : (
-                <div className="w-full h-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-7xl mx-auto">
-                  {user.username.charAt(0).toUpperCase()}
-                </div>
-              )}
+                {newProfilePhoto || (user.profile_photo && user.profile_photo.startsWith('data:image/')) ? (
+                  <img src={newProfilePhoto || user.profile_photo} alt="Profile Preview" className="w-full h-full object-cover rounded-full"/>
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-7xl mx-auto">
+                    {user.username.charAt(0).toUpperCase()}
+                  </div>
+                )}
+
+              </div>
+
+              <button className="mt-2 text-red-500 text-end underline hover:text-red-700" onClick={handleRemoveProfileImage}>
+                Remove Profile Image
+              </button>
+
+              <div className="flex flex-col gap-5">
+                <p>Name</p>
+                <input type="text" value={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
+              </div>
+
+              <div className="flex flex-col gap-5">
+                <p>Mobile</p>
+                <input type="number" value={user.mobile} onChange={(e) => setUser({ ...user, mobile: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
+              </div>
+
+              <div className="flex flex-col gap-5">
+                <p>Username</p>
+                <input type="text" value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
+              </div>
+
+              <div className="flex flex-col gap-5">
+                <p>Password</p>
+                <input type="password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
+              </div>
+
+              <div className="flex flex-col gap-5">
+                <p>Email</p>
+                <input type="email" value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
+              </div>
+
+              <div className="flex flex-col gap-5">
+                <p>Address</p>
+                <input type="text" value={user.address} onChange={(e) => setUser({ ...user, address: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
+              </div>
+
+              <button onClick={handleSaveProfileChanges} className="my-5 p-3 w-[max(42vw,260px)] text-lg text-white bg-gradient-to-r from-indigo-500 to-purple-500 shadow-xl hover:bg-gradient-to-l">
+                Save Changes
+              </button>
 
             </div>
 
-            <button className="mt-2 text-red-500 text-end underline hover:text-red-700" onClick={handleRemoveProfileImage}>
-              Remove Profile Image
-            </button>
-
-            <div className="flex flex-col gap-5">
-              <p>Name</p>
-              <input type="text" value={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
-            </div>
-
-            <div className="flex flex-col gap-5">
-              <p>Mobile</p>
-              <input type="number" value={user.mobile} onChange={(e) => setUser({ ...user, mobile: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
-            </div>
-
-            <div className="flex flex-col gap-5">
-              <p>Username</p>
-              <input type="text" value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
-            </div>
-
-            <div className="flex flex-col gap-5">
-              <p>Password</p>
-              <input type="password" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
-            </div>
-
-            <div className="flex flex-col gap-5">
-              <p>Email</p>
-              <input type="email" value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
-            </div>
-
-            <div className="flex flex-col gap-5">
-              <p>Address</p>
-              <input type="text" value={user.address} onChange={(e) => setUser({ ...user, address: e.target.value })}className="bg-transparent outline-[#6a70d1] border-2 border-gray-400 p-3 w-[max(42vw,260px)]" placeholder="Type Here" required />
-            </div>
-
-            <button onClick={handleSaveProfileChanges} className="my-5 p-3 w-[max(42vw,260px)] text-lg text-white bg-gradient-to-r from-indigo-500 to-purple-500 shadow-xl hover:bg-gradient-to-l">
-              Save Changes
-            </button>
-
-          </div>
-
-        )}
+          )}
 
         {/* Settings Drawer */}
         
@@ -172,19 +179,6 @@ const SettingsPage = () => {
               <label htmlFor="settings-drawer" className="text-purple-600 font-bold  bg-gray-100 w-8 h-8 p-2 rounded-full flex items-center justify-center ml-auto">
                 <i className="ri-close-large-line cursor-pointer"></i>
               </label>
-
-              <div className='my-8 mx-auto'>
-                {user.profile_photo &&
-                  user.profile_photo.startsWith("data:image/") ? (
-                  <img src={user.profile_photo} alt="Profile" className="w-40 h-40 object-cover rounded-full mx-auto"/>
-                  ) : (
-                  <div className="w-28 h-28 mx-auto bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-4xl">
-                    {user.username.charAt(0).toUpperCase()}
-                  </div>
-                )} 
-                <p className='text-center mt-4 text-2xl font-semibold'>{user.name}</p>
-              </div>
-
               <div className="w-full">
                 <button onClick={() => setSelectedSection('details')} className='text-start block w-full py-2 px-4 text-lg mb-4 hover:font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-500'>
                   <i className="ri-user-line mr-2"></i>User Details

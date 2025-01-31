@@ -98,14 +98,23 @@ const NavBar = () => {
 
             {/* PROFILE */}
             <div className="dropdown dropdown-hover lg:mx-3">
-
-              { user && user.profile_photo && user.profile_photo.startsWith('data:image/') ? 
-                <img src={user.profile_photo} alt="Profile" className="w-10 h-10 object-cover rounded-full"/> 
-                :  
+              {user && user.username ? (
+                user.profile_photo && user.profile_photo.startsWith('data:image/') ? (
+                  <img
+                    src={user.profile_photo}
+                    alt="Profile"
+                    className="w-10 h-10 object-cover rounded-full"
+                  />
+                ) : (
+                  <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl">
+                    {user.username.charAt(0).toUpperCase()}
+                  </div>
+                )
+              ) : (
                 <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl">
-                  {user.username.charAt(0).toUpperCase()}
-                </div> 
-              }
+                  
+                </div>
+              )}
 
               <ul tabIndex="0" className="dropdown-content menu bg-base-100 rounded-box z-[1] w-36 p-2 shadow">
                 <li><Link to={'/cart'}><i className="ri-shopping-cart-2-line"></i>Cart</Link></li>
@@ -129,7 +138,18 @@ const NavBar = () => {
           {!MenuOpen && (
             <div className="flex justify-end lg:hidden md:hidden fixed right-5">
               <button onClick={toggleMenu}>
-                <i className="ri-menu-line text-2xl font-medium rounded-full"></i>
+                {user && user.username ? (
+                  user.profile_photo && user.profile_photo.startsWith('data:image/') ? (
+                  <img src={user.profile_photo} alt="Profile" className="w-10 h-10 object-cover rounded-full" />
+                  ) : (
+                    <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl">
+                      {user.username.charAt(0).toUpperCase()}
+                    </div>
+                  )) : (
+                  <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl">
+                    
+                  </div>
+                )}
               </button>
             </div>
           )}
@@ -143,26 +163,6 @@ const NavBar = () => {
       
             <div className="flex gap-3 items-center justify-end">
   
-              {/* Profile Img */}
-              <div className="dropdown dropdown-hover">
-                <div tabIndex="0">
-                  { user && user.profile_photo && user.profile_photo.startsWith('data:image/') ? 
-                    <img src={user.profile_photo} alt="Profile" className="w-10 h-10 object-cover rounded-full"/> 
-                    :  
-                    <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl">
-                      {user.username.charAt(0).toUpperCase()}
-                    </div> 
-                  }
-                </div>
-                <ul tabIndex="0" className="dropdown-content menu bg-base-100 rounded-box z-[1] w-36 p-2 shadow">
-                  <li><Link to={'/cart'}><i className="ri-shopping-cart-2-line"></i>Cart</Link></li>
-                  <li><Link to={'/my-orders'}><i className="ri-shopping-bag-line"></i>Orders</Link></li>
-                  <li> <Link to={'/wishlist'}><i className='ri-heart-3-line'></i>Wishlist</Link></li>
-                  <li><Link to={'/settings'}><i className="ri-settings-3-line"></i>Settings</Link></li>
-                  <li><Link to={'/logout'}><i className="ri-logout-box-line"></i>Logout</Link></li>
-                </ul>
-              </div>
-
               {/* Logout Btn */}
               <div>
                 <button className='flex gap-1 rounded-full text-white bg-gradient-to-r from-indigo-500 to-purple-500 hover:bg-gradient-to-ltext-white px-4 py-2'>
@@ -179,10 +179,12 @@ const NavBar = () => {
             {/* Icons */}
 
             <div className='mt-4 flex items-end justify-end'>
+
               <label htmlFor="search-drawer" className="cursor-pointer">
                 <i className="ri-search-line text-xl"></i>
               </label>
-              <div className="relative mx-5">
+
+              <div className="relative mx-4">
                 <label htmlFor="wishlist-drawer" className="cursor-pointer">
                   <i className="ri-heart-3-line text-xl"></i>
                 </label>
@@ -203,6 +205,11 @@ const NavBar = () => {
                   </span>
                 )}
               </div>
+
+              <Link to={'/my-orders'}><i className="ri-shopping-bag-line text-xl mx-4"></i></Link>
+
+              <Link to={'/settings'}><i className="ri-settings-3-line text-xl"></i></Link>
+
             </div>
 
             {/* MENUS */}

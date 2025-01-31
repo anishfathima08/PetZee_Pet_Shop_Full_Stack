@@ -158,7 +158,7 @@ const Cat_Accessory_List = () => {
       </div>
 
       {/* View Modal */}
-      <dialog id="view_modal" className="modal w-6/12">
+      <dialog id="view_modal" className="modal w-11/12 max-w-4xl">
         <div className="modal-box p-6 rounded-lg shadow-lg bg-white">
           <form method="dialog">
             <div className="flex justify-between mb-5">
@@ -171,7 +171,7 @@ const Cat_Accessory_List = () => {
           {selectedProduct && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <img src={selectedProduct.image} alt="Product" className="h-64 w-full object-cover rounded-md border" />
+                <img src={selectedProduct.image} alt="Product" className="h-64 w-full object-cover" />
               </div>
               <table className='flex'>
                 <thead>

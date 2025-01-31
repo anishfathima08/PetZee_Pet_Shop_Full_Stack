@@ -108,8 +108,8 @@ const PetFoods = () => {
                             </div>
                         )}
                         <div className="grid lg:grid-cols-2 md:grid-cols-2 lg:gap-10 gap-5 mt-5">
-                            <div className='border rounded'>
-                                <img src={selectedItem.image}  alt="model_img"className="mt-5 lg:mt-0 w-full lg:h-[50vh] md:h-[65vh]"/>
+                            <div>
+                                <img src={selectedItem.image}  alt="model_img"className="w-full lg:h-[50vh] md:h-[65vh]"/>
                             </div>
                             <div>
                                 <div className="text-2xl font-medium text-purple-600">

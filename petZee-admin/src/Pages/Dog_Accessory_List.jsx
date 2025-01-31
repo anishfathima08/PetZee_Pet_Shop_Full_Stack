@@ -162,7 +162,7 @@ const Dog_Accessory_List = () => {
       </div>
 
       {/* View Modal */}
-      <dialog id="view_modal" className="modal w-6/12">
+      <dialog id="view_modal" className="modal w-11/12 max-w-4xl">
         <div className="modal-box p-6 rounded-lg shadow-lg bg-white">
           <form method="dialog">
             <div className="flex justify-between mb-5">

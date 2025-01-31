@@ -27,7 +27,7 @@ const CartPage = () => {
             <div className='border rounded shadow-lg lg:w-[120vh] mt-8 h-fit'>
 
                 <div className="flex justify-between px-5 py-5 border-b">
-                    <p className='text-2xl font-semibold text-gray-800'>Product</p>
+                    <p className='lg:text-2xl md:text-2xl text-xl font-semibold text-gray-800'>Product</p>
                     <p className='text-2xl font-semibold text-gray-800'>Price</p>
                 </div>
 
@@ -67,7 +67,7 @@ const CartPage = () => {
             </div>
 
             <div className="border rounded shadow-lg h-fit lg:w-[60vh] mt-8 px-5 pt-5 pb-8">
-                    <p className="text-2xl font-semibold text-gray-800 border-b pb-5">Order Summary</p>
+                    <p className="lg:text-2xl md:text-2xl text-xl font-semibold text-gray-800 border-b pb-5">Order Summary</p>
                     <div className="mt-4 space-y-4">
                         
                         <div className="flex justify-between items-center border-b pb-5">

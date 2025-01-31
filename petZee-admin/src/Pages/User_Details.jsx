@@ -20,7 +20,6 @@ const User_Details = () => {
     }
   };
 
-
   const Remove_User = async (id) => {
     try {
       const response = await axios.post(`${url}/user_list/remove`, { id });
@@ -61,16 +60,21 @@ const User_Details = () => {
               <tbody key={index}>
                 <tr>
                   <td className="py-3 lg:px-3 px-5">
-                    {user.profile_photo &&
-                    user.profile_photo.startsWith("data:image/") ? (
-                      <img
-                        src={user.profile_photo}
-                        alt="Profile"
-                        className="w-14 h-14 object-cover rounded-full"
-                      />
+                    {user && user.username ? (
+                      user.profile_photo && user.profile_photo.startsWith('data:image/') ? (
+                        <img
+                          src={user.profile_photo}
+                          alt="Profile"
+                          className="w-10 h-10 object-cover rounded-full"
+                        />
+                      ) : (
+                        <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl">
+                          {user.username.charAt(0).toUpperCase()}
+                        </div>
+                      )
                     ) : (
-                      <div className="w-14 h-14 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl">
-                        {user.username.charAt(0).toUpperCase()}
+                      <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl">
+                        
                       </div>
                     )}
                   </td>

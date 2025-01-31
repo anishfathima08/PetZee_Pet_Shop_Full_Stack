@@ -65,13 +65,19 @@ const Order_List = () => {
               <tbody key={index}>
                 <tr className='border-b border-[#6a70d1]'>
                   <td>
-                    {order.profile_photo ? (
-                      <img src={order.profile_photo} alt="Profile" className="w-10 h-10 object-cover rounded-full mx-auto"/>
+                    {order && order.username ? (
+                      order.profile_photo && order.profile_photo.startsWith('data:image/') ? (
+                        <img src={order.profile_photo} alt="Profile" className="w-10 h-10 object-cover rounded-full mx-auto"/>
                       ) : (
-                      <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl mx-auto">
-                        {order.username.charAt(0).toUpperCase()}
+                        <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl mx-auto">
+                          {order.username.charAt(0).toUpperCase()}
+                        </div>
+                      )
+                    ) : (
+                      <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center rounded-full text-white text-xl">
+                        
                       </div>
-                    )} 
+                    )}
                   </td>
                   <td className="py-3 text-center  px-5 text-sm">{order.username}</td>
                   <td className="py-3 text-center  px-5 text-sm">{order.mobile}</td>
@@ -117,8 +123,8 @@ const Order_List = () => {
                   <td className="py-3 text-center lg:px-3 px-5 text-sm">{order.address}</td>
                   <td className="py-3 text-center lg:px-3 px-5 text-sm">₹ {order.total_price}</td>
                   <td className="py-3 text-center lg:px-3 px-5 text-sm">
-                    <p className='text-green-800 bg-green-300 w-fit px-2  rounded-2xl text-xs'>
-                    <span className='text-lg'>●</span> Delivered</p>
+                    <p className='text-green-800 bg-green-300 w-fit px-2 py-1  rounded-2xl text-xs'>
+                    <span>●</span> Delivered</p>
                   </td>
                   <td className="py-3 px-5">
                     <i onClick={() => Remove_Order(order._id)} className="fa-solid fa-xmark mx-3 hover:text-red-600 text-lg cursor-pointer"></i>

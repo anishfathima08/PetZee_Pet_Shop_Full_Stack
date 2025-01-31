@@ -2,6 +2,7 @@ import home_content_img from './home_content.jpg'
 
 import login_animation from './Login.gif'
 import register_animation from './Register.gif'
+import order_success from './order_success.gif'
 
 import contact_img from './contact-imgs/contact-img.jpg'
 import google_logo from './contact-imgs/google_logo.png'
@@ -44,7 +45,8 @@ export const assets = {
     empty_wishlist_img,
     error_img,
     login_animation,
-    register_animation
+    register_animation,
+    order_success
 }
 
 export const service_data = [

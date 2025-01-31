@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { assets } from '../../assets/assets';
 import { AppContext } from '../../context/AppContextProvider';
 
- const OrderConfirmationPage = () => {
+ const CheckoutBody = () => {
 
   const { cart, totalAfterDiscount, discountAmount, priceBeforeDiscount, user,  orderNumber, formattedDate, handleConfirmOrder } = useContext(AppContext);
   
@@ -42,6 +42,7 @@ import { AppContext } from '../../context/AppContextProvider';
                 </div>
               </div>
               <div className="p-6 rounded-lg lg:text-end md:text-end">
+                <p className="text-xl text-gray-700">Cash on Delivery*</p>
                 <p className="text-xl font-semibold text-gray-700">Estimated Delivery Date</p>
                 <p className="text-lg text-gray-600">
                   Your order is expected to arrive on <span className="font-semibold text-indigo-600">{formattedDate}</span>
@@ -93,4 +94,4 @@ import { AppContext } from '../../context/AppContextProvider';
   );
 };
 
-export default OrderConfirmationPage;
+export default CheckoutBody;

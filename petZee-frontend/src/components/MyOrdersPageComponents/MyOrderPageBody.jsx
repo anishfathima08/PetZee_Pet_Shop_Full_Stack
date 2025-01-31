@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import React, { useContext } from 'react';
 import { assets } from '../../assets/assets';
@@ -8,8 +6,6 @@ import { AppContext } from '../../context/AppContextProvider';
 const MyOrdersPage = () => {
 
   const { orders, formattedDate, Remove_Order } = useContext(AppContext); 
-
-
   
   if (!orders || orders.length === 0) {
     return (

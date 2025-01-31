@@ -6,10 +6,78 @@ import React, { createContext, useEffect, useState } from 'react';
 export const AppContext = createContext();
 
 const AppContextProvider = ( { children } ) => {
+    
+    const navigate = useNavigate(); 
 
     // Backend URL
 
     const url =  'https://petzee-backend.onrender.com'
+
+    // Form
+
+    const [showRegister, setShowRegister] = useState(true);
+    const [showPassword, setShowPassword] = useState(false);      
+    const [showLoginPassword, setShowLoginPassword] = useState(false);
+    const [loginData, setLoginData] = useState({ username: '', password: '' });
+    const [RegisterData, setRegisterData] = useState({ name: '', email: '', mobile: '', username: '', password: '', address: '' });
+    
+    const validatePassword = (password) => /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{5,}$/.test(password);
+    
+    const KeyUp_Login = (e) => setLoginData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const KeyUp_Register = (e) => setRegisterData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    
+    const toggleForm = () => setShowRegister(!showRegister);
+    const togglePasswordVisibility = () => setShowPassword(!showPassword);
+    const toggleLoginPasswordVisibility = () => setShowLoginPassword(!showLoginPassword);
+
+    const RegisterSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(`${url}/add_user`, RegisterData, {
+                headers: { 'Content-Type': 'application/json' },
+            });
+            if (response.status === 200) {
+                toast.success(`Welcome to PetZee, ${RegisterData.username}! Registration successful. Now Login`, { autoClose: 2000 });
+                setTimeout(() => {
+                toast.dismiss(); 
+                navigate('/home');
+                }, 2000);
+            } 
+            else {
+                toast.error('Registration failed. Please try again.', { autoClose: 2000 });
+            }
+        } 
+        catch (error) {
+            toast.error('Registration failed. Please try again.', { autoClose: 2000 });
+        }
+    };
+      
+    const LoginSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(`${url}/user_id`, loginData, {
+                headers: { 'Content-Type': 'application/json' },
+            });
+      
+            if (response.data.success) {
+                localStorage.setItem('token', response.data.message);
+                localStorage.setItem('userId', response.data.message);
+        
+                toast.success(`Welcome to PetZee, ${loginData.username}!`, { autoClose: 2000 });
+        
+                navigate('/home');
+                setTimeout(() => {
+                toast.dismiss();
+                window.location.reload(); 
+                }, 2000);
+            } else {
+                toast.error('Invalid username or password. Please try again.', { autoClose: 2000 });
+            }
+        } 
+        catch (error) {
+            toast.error('Invalid username or password. Please try again.', { autoClose: 2000 });
+        }
+    };
 
     // Navbar Toggle
 
@@ -438,8 +506,6 @@ const AppContextProvider = ( { children } ) => {
 
     // Deleting a account from settings page
 
-    const navigate = useNavigate(); 
-
     const handleDeleteAccount = async () => {
         const confirmDelete = window.confirm('Are you sure you want to delete your account?');
         if (confirmDelete && user && user._id) {
@@ -503,13 +569,17 @@ const AppContextProvider = ( { children } ) => {
 
     const contextValue = {
 
-        //Backend URL
+        // Backend URL
         url,
+
+        // Form
+        showRegister, RegisterData, KeyUp_Register, showPassword, togglePasswordVisibility, validatePassword, toggleForm, 
+        RegisterSubmit, loginData, KeyUp_Login, showLoginPassword, toggleLoginPasswordVisibility, LoginSubmit,
         
         // Navbar Toggle
         MenuOpen, setMenuOpen, toggleMenu,
 
-        //Search Modal
+        // Search Modal
         query, SearchProducts, handleProductSearch,
 
         // Product Modal
@@ -530,7 +600,7 @@ const AppContextProvider = ( { children } ) => {
         data, cat_breeds, dog_breeds, cat_food, dog_food, cat_accessory, dog_accessory, cat_grooming, dog_grooming, products_length, cat_products, dog_products, filteredData, setfilteredData,
 
         // User Data
-        user, setUser,
+        user, setUser, fetchUserData,
 
         //Home Page Pet, Food Section
         pet_section, food_section,

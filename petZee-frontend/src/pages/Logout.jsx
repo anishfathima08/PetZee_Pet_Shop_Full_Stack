@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react'
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../context/AppContextProvider';
 
-export default function Logout() {
-    const navigate = useNavigate();
+const Logout = () => {
+  const navigate = useNavigate();
+  const { setUser } = useContext(AppContext);
 
-    useEffect(() => {
-        localStorage.clear();
-        navigate('/');
-    }, [navigate]);
+  useEffect(() => {
+    localStorage.clear();
+    setUser(null);
+    navigate('/');
+  }, [navigate, setUser]);
 
-    return null; 
-    
-}
+  return null;
+};
+
+export default Logout;
