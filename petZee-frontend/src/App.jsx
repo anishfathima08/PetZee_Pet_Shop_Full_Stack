@@ -44,7 +44,7 @@ const App = () => {
 
             <Route path='/contact' element={ <UserProtection> <ContactPage /> </UserProtection> } />
 
-            <Route path='my-orders' element={ <UserProtection> <MyOrdersPage/> </UserProtection> } />
+            <Route path='/my-orders' element={ <UserProtection> <MyOrdersPage/> </UserProtection> } />
 
             <Route path='/checkout' element={ <UserProtection> <CheckoutPage/> </UserProtection> } />
 
