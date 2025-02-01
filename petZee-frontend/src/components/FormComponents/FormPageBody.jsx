@@ -8,7 +8,7 @@ import { AppContext } from '../../context/AppContextProvider';
 const FormPageBody = () => {
 
   const { showRegister, RegisterData, KeyUp_Register, showPassword, togglePasswordVisibility, validatePassword, toggleForm, RegisterSubmit, loginData, KeyUp_Login, showLoginPassword, toggleLoginPasswordVisibility, LoginSubmit } = useContext(AppContext);
-  
+
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="w-full">
